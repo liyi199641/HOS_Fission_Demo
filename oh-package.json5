@@ -1,0 +1,16 @@
+{
+  "modelVersion": "5.0.0",
+  "description": "Please describe the basic information.",
+  "dependencies": {
+    "rxjs": "^7.8.1",
+    "@hadss/hmrouter": "latest",
+    "@pura/harmony-utils": "^1.1.0",
+    "@ohos/axios": "^2.2.4",
+    "@candies/image_cropper": "^1.0.5"
+  },
+  "devDependencies": {
+    "@ohos/hypium": "1.0.19",
+    "@ohos/hamock": "1.0.0"
+  },
+  "dynamicDependencies": {}
+}

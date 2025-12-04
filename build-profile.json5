@@ -1,0 +1,61 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/liyi/.ohos/config/default_HOS_Fission_NotsdEJimdEygg9kI5vPK_jElfWxNRuvQl4nGvF7M6o=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BEAB66DDB5984DBAB993CA33AD27352EE416BCB6927DE5C182C47CBC0DB82E493C1699C03506AAC",
+          "profile": "/Users/liyi/.ohos/config/default_HOS_Fission_NotsdEJimdEygg9kI5vPK_jElfWxNRuvQl4nGvF7M6o=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/liyi/.ohos/config/default_HOS_Fission_NotsdEJimdEygg9kI5vPK_jElfWxNRuvQl4nGvF7M6o=.p12",
+          "storePassword": "0000001BA39E43C24542D912F4701FFAF46E905223522E7DAD89780C644A990FAB3E278F72494174F9D342"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "6.0.1(21)",
+        "targetSdkVersion": "6.0.1(21)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true,
+            //true 构建字节码har包时，需要改为true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "module_common",
+      "srcPath": "./module_common"
+    }
+  ]
+}

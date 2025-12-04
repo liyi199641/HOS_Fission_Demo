@@ -1,0 +1,96 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "public_custom_dial_1",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "public_custom_dial_2",
+      "value": "#3CDD6A"
+    },
+    {
+      "name": "public_custom_dial_3",
+      "value": "#F15A49"
+    },
+    {
+      "name": "public_custom_dial_4",
+      "value": "#F1C849"
+    },
+    {
+      "name": "public_custom_dial_5",
+      "value": "#F18A49"
+    },
+    {
+      "name": "public_custom_dial_6",
+      "value": "#A37EF4"
+    },
+    {
+      "name": "public_custom_dial_7",
+      "value": "#44BEFF"
+    },
+    {
+      "name": "public_custom_dial_8",
+      "value": "#333333"
+    },
+    {
+      "name": "public_custom_dial_9",
+      "value": "#4469FF"
+    },
+    {
+      "name": "public_custom_dial_white_big",
+      "value": "#F0F8F0"
+    },
+    {
+      "name": "public_custom_dial_red_big",
+      "value": "#E85440"
+    },
+    {
+      "name": "public_custom_dial_yellow_big",
+      "value": "#E8C040"
+    },
+    {
+      "name": "public_custom_dial_gray_big",
+      "value": "#282C28"
+    },
+    {
+      "name": "public_custom_dial_orange_big",
+      "value": "#E88440"
+    },
+    {
+      "name": "public_custom_dial_green_big",
+      "value": "#30D460"
+    },
+    {
+      "name": "public_custom_dial_light_blue_big",
+      "value": "#38B8F0"
+    },
+    {
+      "name": "public_custom_dial_dark_blue_big",
+      "value": "#3864F0"
+    },
+    {
+      "name": "public_custom_dial_sky_blue_big",
+      "value": "#08F8F0"
+    },
+    {
+      "name": "public_custom_dial_purple_big",
+      "value": "#987CE0"
+    },
+    {
+      "name": "public_custom_dial_72f4ef",
+      "value": "#72F4EF"
+    },
+    {
+      "name": "public_custom_dial_bg_black",
+      "value": "#000000"
+    },
+    {
+      "name": "public_custom_dial_white",
+      "value": "#FFFFFF"
+    }
+  ]
+}

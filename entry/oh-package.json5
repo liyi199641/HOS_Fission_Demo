@@ -1,0 +1,13 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "module_common": "file:../module_common", // 此处也可以是以当前oh-package.json5所在目录为起点的相对路径。
+    "fission_sdk": "file:../fission_sdk.har"
+  }
+}
+

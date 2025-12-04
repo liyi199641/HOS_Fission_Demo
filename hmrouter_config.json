@@ -1,0 +1,9 @@
+{
+  "scanDir": [
+    "src/main/ets/components",
+    "src/main/ets/interceptors",
+    "src/main/ets/pages",
+    "src/main/ets/dialog"
+  ],
+  "saveGeneratedFile": false
+}

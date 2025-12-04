@@ -1,0 +1,10 @@
+/.idea
+/.hvigor
+entry/.preview
+entry/build
+entry/oh_modules
+module_common/.preview
+module_common/build
+module_common/oh_modules
+/oh_modules
+/local.properties

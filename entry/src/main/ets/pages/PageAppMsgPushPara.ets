@@ -1,0 +1,541 @@
+import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { PageConstant } from '../constant/PageConstant';
+
+import {
+  AppMessageBean,
+  BloodPressureRecord,
+  CommunicatGps,
+  DaysReport,
+  DiskSpaceInfo,
+  DkWaterRemind,
+  DndRemind,
+  ExerciseDetail,
+  ExerciseGpsRecord,
+  ExerciseList,
+  ExerciseReport,
+  FemalePhysiology,
+  FissionAlarm,
+  FissionBigDataCmdResultListener,
+  FissionSdkManager,
+  HandMeasureInfoBean,
+  HardWareInfo,
+  HeartRateRecord,
+  HoursReport,
+  HrDetectPara,
+  HrpsDetailRecord,
+  HrRateLevel,
+  HrWarnPara,
+  HsDialInfo,
+  HsJsFileInfo,
+  HsMultimediaFileInfo,
+  LiftWristPara,
+  LISTENER_TYPE,
+  MeasureInfo,
+  MentalStressRecord,
+  NotesReminders,
+  ProgressBean,
+  QuickReply,
+  RingtoneSetting,
+  SedentaryBean,
+  SleepRecord,
+  SleepReport,
+  SnAndCmeiInfo,
+  SpKeys,
+  Spo2Record,
+  SportListInfo,
+  SportsTargetPara,
+  SpUtil,
+  StepsRecord,
+  SystemFunctionSwitch,
+  TodayWeatherDetail,
+  UserInfo,
+  WeatherParam
+} from 'fission_sdk';
+import { TitleBar } from '../components/TitleBar';
+import { ToastUtil } from '@pura/harmony-utils';
+import { showTextPickerDialog } from '../dialog/DialogUtil';
+import { stringToBytes } from 'fission_sdk';
+
+/**
+ * @file PageAppMsgPushPara.ets
+ * @author liyi
+ * @date 2024/10/29
+ * @description APP社交消息推送
+ */
+@HMRouter({ pageUrl: PageConstant.PAGE_APP_MSG_PUSH_PARA })
+@Component
+export struct PageAppMsgPushPara {
+  @State type: number = 0;
+  @State name: string = '';
+  @State content: string = '';
+  @State pageWeatherCode: number = 0;
+  weatherTypes: string[] = ["NONE",
+    "电话",
+    "短信",
+    "微信",
+    "QQ",
+    "Facebook",
+    "Twitter",
+    "linkedln",
+    "Whatsapp",
+    "line",
+    "Instagram",
+    "Snapchat",
+    "Skype",
+    "Gmail",
+    "Outlook",
+    "Messenger",
+    "Viber",
+    "googletalk",
+    "vkontakte",
+    "imo",
+    "imobeta",
+    "imolite",
+    "chatapp",
+    "kik",
+    "skred",
+    "telegramx",
+    "beechat",
+    "teamtalk",
+    "kakao",
+    "ftalk",
+    "rimet",
+    "wework",
+    "hongbao",
+    "missedcall",
+    "calender",
+    "applemusic",
+    "googlemaps",
+    "likee",
+    "messages",
+    "mono",
+    "odnoklassniki",
+    "privat",
+    "youtube",
+    "youtubemusic",
+    "zoom",
+    "telegram",
+    "tiktok",
+    "pinterest",
+    "misscall",
+    "discord",
+    "whitetb",
+    "email",
+    "fastrack_reflex_world",
+    "inshort",
+    "amazon",
+    "flipkart",
+    "smartworld",];
+  private scroller: Scroller = new Scroller()
+
+  aboutToAppear(): void {
+    let that = this;
+    class BigDataListener extends FissionBigDataCmdResultListener {
+      sendSuccess(cmdId: string): void {
+
+      }
+
+      sendFail(cmdId: string): void {
+
+      }
+
+      onResultTimeout(cmdId: string): void {
+
+      }
+
+      onResultError(errorMsg: string): void {
+
+      }
+
+      pushAppNotification(): void {
+        ToastUtil.showShort("推送消息成功")
+      }
+
+      getHardwareInfo(hardWareInfo: HardWareInfo): void {
+
+      }
+
+      getSystemInfo(data: Uint8Array): void {
+
+      }
+
+      getMeasureInfo(measureInfo: MeasureInfo): void {
+
+      }
+
+      getDaysReport(daysReports: DaysReport[]): void {
+
+      }
+
+      getHoursReport(hoursReports: HoursReport[]): void {
+
+      }
+
+      getSleepReport(sleepReports: SleepReport[]): void {
+
+      }
+
+      getSleepRecord(sleepRecords: SleepRecord[]): void {
+
+      }
+
+      getCurSleepRecord(sleepRecord: SleepRecord): void {
+
+      }
+
+      getCurSleepReport(sleepRecord: SleepRecord): void {
+
+      }
+
+      getExerciseList(exerciseLists: ExerciseList[]): void {
+
+      }
+
+      getExerciseReport(exerciseReports: ExerciseReport[]): void {
+
+      }
+
+      getHeartRateRecord(heartRateRecords: HeartRateRecord[]): void {
+
+      }
+
+      getStepsRecord(stepsRecords: StepsRecord[]): void {
+
+      }
+
+      getSpo2Record(spo2Records: Spo2Record[]): void {
+
+      }
+
+      getMentalStressRecord(mentalStressRecords: MentalStressRecord[]): void {
+
+      }
+
+      getBloodPressureRecord(bloodPressureRecords: BloodPressureRecord[]): void {
+
+      }
+
+      getExerciseDetail(exerciseDetails: ExerciseDetail[]): void {
+
+      }
+
+      getExprGpsDetail(exerGpsDetails: ExerciseGpsRecord[]): void {
+
+      }
+
+      getUserInfo(userInfo: UserInfo): void {
+
+      }
+
+      getAlarm(fissionAlarms: FissionAlarm[]): void {
+      }
+
+      getSedentaryPara(sedentaryBean: SedentaryBean): void {
+
+      }
+
+      getHrRateLevelPara(hrRateLevel: HrRateLevel): void {
+
+      }
+
+      getDrinkWaterPara(dkWaterRemind: DkWaterRemind): void {
+
+      }
+
+      getDndPara(dndRemind: DndRemind): void {
+
+      }
+
+      getHrDetectPara(hrDetectPara: HrDetectPara): void {
+
+      }
+
+      getLiftWristPara(liftWristPara: LiftWristPara): void {
+
+      }
+
+      getTargetSet(sportsTargetPara: SportsTargetPara): void {
+
+      }
+
+      getFemalePhysiology(femalePhysiology: FemalePhysiology): void {
+
+      }
+
+      getHrWarnPara(hrWarnPara: HrWarnPara): void {
+
+      }
+
+      getHandMeasureInfo(handMeasureInfoBeans: HandMeasureInfoBean[]): void {
+
+      }
+
+      setUserInfo(): void {
+
+      }
+
+      setAlarmInfos(): void {
+        ToastUtil.showShort('设置闹钟信息成功')
+      }
+
+      setSedentaryPara(): void {
+
+      }
+
+      setHrlevAlgoPara(): void {
+
+      }
+
+      setHrWarnPara(): void {
+
+      }
+
+      setDrinkWaterPara(): void {
+
+      }
+
+      setDndPara(): void {
+
+      }
+
+      setHrDetectPara(): void {
+
+      }
+
+      setLiftWristPara(): void {
+
+      }
+
+      setTargetSet(): void {
+
+      }
+
+      setFemalePhysiology(): void {
+
+      }
+
+      setWeather(): void {
+
+      }
+
+      setWeatherDetail(): void {
+
+      }
+
+      setLocationInfo(): void {
+
+      }
+
+      onUpdateDialProgress(progress: ProgressBean): void {
+
+      }
+
+      incomingCall(): void {
+
+      }
+
+      sendMusicInfo(): void {
+      }
+
+      sendGpsCommand(communicatGps: CommunicatGps): void {
+
+      }
+
+      setQuickReplyData(): void {
+
+      }
+
+      getQuickReplyData(quickReplyList: QuickReply[]): void {
+
+      }
+
+      getBuriedData(filepath: string): void {
+
+      }
+
+      setPhoneBooks(): void {
+
+      }
+
+      getFlashData(filepath: string): void {
+
+      }
+
+      getHrpsDetailRecord(hrpsDetailRecords: HrpsDetailRecord[]): void {
+
+      }
+
+      getSportListInfo(sportListInfo: SportListInfo): void {
+
+      }
+
+      getSystemFunctionSwitch(systemFunctionSwitch: SystemFunctionSwitch): void {
+
+      }
+
+      setSystemFunctionSwitch(): void {
+
+      }
+
+      setAgpsLocation(): void {
+
+      }
+
+      setSnAndCmeiCode(): void {
+
+      }
+
+      getSnAndCmeiCode(snAndCmeiInfo: SnAndCmeiInfo): void {
+
+      }
+
+      getNotesReminders(notesReminders: NotesReminders[]): void {
+
+      }
+
+      setNotesReminders(): void {
+
+      }
+
+      getDiskSpaceInfo(diskSpaceInfo: DiskSpaceInfo): void {
+
+      }
+
+      getHsJsAppFileList(list: HsJsFileInfo[]): void {
+
+      }
+
+      getHsDialFileList(list: HsDialInfo[]): void {
+
+      }
+
+      getHsMusicFileList(list: HsMultimediaFileInfo[]): void {
+
+      }
+
+      getHsVideoFileList(list: HsMultimediaFileInfo[]): void {
+
+      }
+
+      getHsEbookFileList(list: HsMultimediaFileInfo[]): void {
+
+      }
+
+      getHsRingtoneMsgFileList(list: HsMultimediaFileInfo[]): void {
+
+      }
+
+      getHsRingtoneCallFileList(list: HsMultimediaFileInfo[]): void {
+
+      }
+
+      getHsRingtoneClockFileList(list: HsMultimediaFileInfo[]): void {
+
+      }
+
+      deleteFileInfoList(): void {
+
+      }
+
+      getRingtoneSettings(ringtoneSettings: RingtoneSetting[]): void {
+
+      }
+    }
+    FissionSdkManager.getInstance().addListener( new BigDataListener());
+
+  }
+
+  build() {
+    Scroll(this.scroller) {
+      Column() {
+        TitleBar({
+          title: 'APP社交消息推送',
+          onBackClick: () => {
+            HMRouterMgr.pop({ navigationId: 'mainNavigationId' })
+          }
+        })
+
+        Row() {
+          Text('消息类型').width(150).textAlign(TextAlign.End)
+          Button(this.weatherTypes[this.pageWeatherCode])
+            .height(40)
+            .width(150)
+            .margin({ left: 20 })
+            .border({ width: 1, color: Color.Gray })
+        }.width('100%')
+        .alignItems(VerticalAlign.Center)
+        .margin({ top: 20 })
+        .onClick(ev => {
+          showTextPickerDialog(this.weatherTypes, this.pageWeatherCode, (value: TextPickerResult) => {
+            this.pageWeatherCode = value.index as number;
+          })
+        })
+
+        Row() {
+          Text('联系人').width(150).textAlign(TextAlign.End)
+          TextInput({ placeholder: '', text: this.name.toString() })
+            .height(40)
+            .width(150)
+            .margin({ left: 20 })
+            .border({ width: 1, color: Color.Gray })
+            .onChange((value: string) => {
+              this.name = value
+            })
+        }.width('100%')
+        .alignItems(VerticalAlign.Center)
+        .margin({ top: 20 })
+
+        Row() {
+          Text('内容').width(150).textAlign(TextAlign.End)
+          TextInput({ placeholder: '', text: this.content.toString() })
+            .height(40)
+            .width(150)
+            .margin({ left: 20 })
+            .border({ width: 1, color: Color.Gray })
+            .onChange((value: string) => {
+              this.content = value
+            })
+        }.width('100%')
+        .alignItems(VerticalAlign.Center)
+        .margin({ top: 20 })
+
+
+        Divider().layoutWeight(1).color(Color.Transparent);
+
+        Button('设置').width('80%').margin({ bottom: 30 }).onClick(() => {
+
+          if (!this.name) {
+            ToastUtil.showShort("联系人不能为空")
+            return;
+          }
+          if (stringToBytes(this.name).length > 20) {
+            ToastUtil.showShort("联系人过长")
+            return;
+          }
+          if (!this.content) {
+            ToastUtil.showShort("内容不能为空")
+            return;
+          }
+          if (stringToBytes(this.content).length > 200) {
+            ToastUtil.showShort("内容过长")
+            return;
+          }
+
+          let msg: AppMessageBean = new AppMessageBean(1, this.pageWeatherCode, this.name, this.content, Date.now() / 1000);
+          FissionSdkManager.getInstance().pushAppNotification(msg);
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor(Color.White)
+    }
+  }
+
+  getRandom(small: number, bigNum: number): number {
+    let num = Math.floor(Math.random() * (bigNum - small + 1)) + small; // 生成幸运数
+    if (num === 17) {
+      num = 255;
+    }
+    return num;
+  }
+}
