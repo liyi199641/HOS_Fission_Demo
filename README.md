@@ -11,10 +11,10 @@
         "name": "ohos.permission.APPROXIMATELY_LOCATION"
       },
       {
-        "name": "ohos.permission.APPROXIMATELY_LOCATION"
+        "name": "ohos.permission.ACCESS_BLUETOOTH"
       },
       {
-        "name": "ohos.permission.APPROXIMATELY_LOCATION"
+        "name": "ohos.permission.LOCATION"
       }
     ]
   }
