@@ -1,7 +1,7 @@
 import { DateUtil, PermissionUtil, StrUtil } from 'module_common';
 import { common, Permissions } from '@kit.AbilityKit';
 import { emitter } from '@kit.BasicServicesKit';
-import { DeviceInfo } from 'fission_sdk';
+import { DeviceInfo, FissionBigDataCmdResultListener } from 'fission_sdk';
 import { AtCmd, BigDataCmdId, BleComConfig,BLE_STATE, FissionAtCmdResultListener, FissionSdkManager, getBindKey, LISTENER_TYPE, Logger, MacUtil, MusicConfig, SpKeys, SpUtil } from 'fission_sdk';
 import { HMPopInfo, HMRouter, HMRouterMgr } from '@hadss/hmrouter';
 import { PageConstant } from '../constant/PageConstant';
@@ -92,7 +92,7 @@ export struct PageOrder {
 
   aboutToAppear(): void {
     try {
-      FissionSdkManager.getInstance();
+      // FissionSdkManager.getInstance();
       FissionSdkManager.getInstance().init(true);
       let lastDeviceInfo = SpUtil.getData(SpKeys.LAST_DEVICE_INFO, '');
       if (lastDeviceInfo) {
@@ -168,7 +168,7 @@ export struct PageOrder {
 
   /**
    * 连接
-   * @param deviceInfo
+   * @param deviceInfo（deviceInfo.macAddress 蓝牙地址）
    * @param reConnect
    */
   public connectBleDevice(deviceInfo: DeviceInfo, reConnect: boolean = false) {
@@ -189,7 +189,7 @@ export struct PageOrder {
       }
     }
     SpUtil.putData(Constant.key_bindKey, bindKey);
-    this.onBleConnectListener();
+    this.onDeviceDataListener();
 
 
     FissionSdkManager.getInstance().connectBleDevice(deviceInfo, bleComConfig,
@@ -294,29 +294,10 @@ export struct PageOrder {
       })
   }
 
-  public onBleConnectListener() {
-    FissionSdkManager.getInstance().clearListeners();
-    FissionSdkManager.getInstance().clearDataListener();
-
-    class BtListener extends FissionAtCmdResultListener {
-      public sendSuccess(cmdId: string): void {
-      }
-
-      public sendFail(cmdId: string): void {
-      }
-
-      public onResultTimeout(cmdId: string): void {
-      }
-
-      public onResultError(cmdId: string): void {
-      }
-
-      public setMtu(mtu: string): void {
-      }
-    }
-
-    FissionSdkManager.getInstance().addListener(new BtListener());
-
+  /**
+   * 订阅方式获取数据
+   */
+  public onDeviceDataListener() {
     let callbackRawData = (eventData: emitter.EventData): void => {
       try {
         let result = eventData.data?.content as string
@@ -385,14 +366,20 @@ export struct PageOrder {
       }
     };
 
-
     FissionSdkManager.getInstance().clearDataListener();
-    // FissionSdkManager.getInstance().on(LISTENER_TYPE.RAW_DATA, callbackRawData);
+    FissionSdkManager.getInstance().onDataListener(LISTENER_TYPE.RAW_DATA, callbackRawData);
     FissionSdkManager.getInstance().onDataListener(LISTENER_TYPE.AT, callbackAT);
     FissionSdkManager.getInstance().onDataListener(LISTENER_TYPE.BIG_DATA, callbackBigData);
-    // FissionSdkManager.getInstance().on(LISTENER_TYPE.BLE_CONNECT, callbackBleConnect);
 
   }
+  /**
+   * 接口回调式获取数据
+   */
+  public setDeviceDataListener(){
+    FissionSdkManager.getInstance().clearListeners()
+
+  }
+
 
   requestPermissions() {
     // let permissions: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.MICROPHONE', 'ohos.permission.LOCATION', 'ohos.permission.CAMERA']
